@@ -3,4 +3,7 @@
     <string name="ir_para_proxima_tela">Ir para próxima tela</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_1">Fragment_1</string>
+    <string name="fragment_2">Fragment_2</string>
+    <string name="voltar_para_o_primeiro_fragment">Voltar para o primeiro fragment</string>
 </resources>
