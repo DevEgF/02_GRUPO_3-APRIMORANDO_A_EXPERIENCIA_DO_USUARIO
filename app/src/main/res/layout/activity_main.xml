@@ -8,6 +8,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/tvRolledDice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="---"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/fcvMainContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fcvMainContainer"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -15,10 +27,20 @@
         android:layout_height="0dp"
         app:defaultNavHost="true"
         app:navGraph="@navigation/main_nav_graph"
-        app:layout_constraintBottom_toTopOf="@id/btnNextFragment"
+        app:layout_constraintBottom_toTopOf="@id/btnRollDice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/tvRolledDice"/>
+
+    <Button
+        android:id="@+id/btnRollDice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/jogar_dado"
+        android:layout_margin="24dp"
+        app:layout_constraintBottom_toTopOf="@id/btnNextFragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:id="@+id/btnNextFragment"
