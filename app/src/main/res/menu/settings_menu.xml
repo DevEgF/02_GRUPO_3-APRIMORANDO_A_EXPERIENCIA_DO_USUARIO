@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/file"
+        android:title="@string/configuracoes" >
+        <!-- "file" submenu -->
+        <menu>
+            <item android:id="@+id/profile"
+                android:icon="@android:drawable/ic_menu_info_details"
+                android:title="@string/perfil" />
+            <item android:id="@+id/help"
+                android:icon="@android:drawable/ic_menu_help"
+                android:title="@string/ajuda" />
+        </menu>
+    </item>
+</menu>

@@ -23,8 +23,8 @@
 
     <ImageView
         android:id="@+id/ivRolledDice3"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
         android:layout_margin="16dp"
         android:contentDescription="@string/icone_de_um_dado"
         android:src="@drawable/ic_dice_unknown"

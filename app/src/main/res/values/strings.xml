@@ -14,4 +14,7 @@
     <string name="titulo">Título</string>
     <string name="mensagem_de_confirmacao">Mensagem de confirmação</string>
     <string name="confirm">Confirm</string>
+    <string name="configuracoes">Configurações</string>
+    <string name="perfil">Perfil</string>
+    <string name="ajuda">Ajuda</string>
 </resources>

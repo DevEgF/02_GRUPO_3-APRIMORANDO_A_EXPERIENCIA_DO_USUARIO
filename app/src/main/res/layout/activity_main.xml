@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -9,6 +8,13 @@
     android:background="@color/black"
     tools:context=".MainActivity">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarSettingsMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvDiceName"
@@ -21,18 +27,18 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarSettingsMenu" />
 
     <ImageView
         android:id="@+id/ivRolledDice1"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
         android:layout_margin="16dp"
         android:contentDescription="@string/icone_de_um_dado"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDiceName"
+        app:layout_constraintTop_toBottomOf="@+id/tvDiceName"
         android:src="@drawable/ic_dice_unknown"
         tools:src="@drawable/ic_dice_one" />
 
@@ -42,30 +48,30 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/main_nav_graph"
-        app:layout_constraintBottom_toTopOf="@id/btnRollDice"
+        app:layout_constraintBottom_toTopOf="@+id/btnRollDice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivRolledDice1"/>
+        app:layout_constraintTop_toBottomOf="@id/ivRolledDice1"
+        app:navGraph="@navigation/main_nav_graph" />
 
     <Button
         android:id="@+id/btnRollDice"
         android:layout_width="match_parent"
         android:layout_height="54dp"
+        android:layout_margin="24dp"
         android:text="@string/jogar_dado"
-        android:layout_margin="48dp"
-        app:layout_constraintBottom_toTopOf="@id/btnNextFragment"
+        app:layout_constraintBottom_toTopOf="@+id/btnNextFragment"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnNextFragment"
         android:layout_width="match_parent"
         android:layout_height="54dp"
+        android:layout_margin="24dp"
         android:text="@string/ir_para_proxima_tela"
-        android:layout_margin="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
