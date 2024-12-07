@@ -76,7 +76,11 @@ class MainActivity : AppCompatActivity() {
                             getString(R.string.voltar_para_o_primeiro_fragment)
                     }
                     R.id.secondFragment -> {
-                        navController?.popBackStack()
+                        navController?.navigate(R.id.action_secondFragment_to_thirdFragment)
+                        binding.btnNextFragment.text = getString(R.string.voltar_para_o_primeiro_fragment)
+                    }
+                    R.id.thirdFragment -> {
+                        navController?.navigate(R.id.action_thirdFragment_to_firstFragment)
                         binding.btnNextFragment.text = getString(R.string.ir_para_proxima_tela)
                     }
                 }

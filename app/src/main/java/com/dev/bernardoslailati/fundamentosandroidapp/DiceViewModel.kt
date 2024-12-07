@@ -18,6 +18,7 @@ data class DiceUiState(
     @DrawableRes val rolledDice2ImgRes: Int? = null,
     @DrawableRes val rolledDice3ImgRes: Int? = null,
     val numberOfRolls: Int = 0,
+    val rolledDicesList: List<RolledDices> = emptyList()
 )
 
 class DiceViewModel : ViewModel() {
@@ -29,43 +30,79 @@ class DiceViewModel : ViewModel() {
     val uiStateLiveData: LiveData<DiceUiState> = _uiStateLiveData
 
     fun rollDice() {
+        val dice1Value = Random.nextInt(
+            from = 1,
+            until = 7
+        )
+        val dice2Value = Random.nextInt(
+            from = 1,
+            until = 7
+        )
+        val dice3Value = Random.nextInt(
+            from = 1,
+            until = 7
+        )
+        val rolledDices =
+            RolledDices(dice1 = dice1Value, dice2 = dice2Value, dice3 = dice3Value)
+
         _uiState.update { currentState ->
+            val currentRolledDicesList = currentState.rolledDicesList.toMutableList()
+            currentRolledDicesList.add(rolledDices)
+            val updatedRolledDicesList = currentRolledDicesList.toList()
+
             currentState.copy(
-                rolledDice1ImgRes = getDiceImageResource(Random.nextInt(from = 1, until = 7)),
-                rolledDice2ImgRes = getDiceImageResource(Random.nextInt(from = 1, until = 7)),
-                rolledDice3ImgRes = getDiceImageResource(Random.nextInt(from = 1, until = 7)),
-                numberOfRolls = currentState.numberOfRolls + 1
+                rolledDice1ImgRes = getDiceImageResource(
+                    diceValue = dice1Value
+                ),
+                rolledDice2ImgRes = getDiceImageResource(
+                    diceValue = dice2Value
+                ),
+                rolledDice3ImgRes = getDiceImageResource(
+                    diceValue = dice3Value
+                ),
+                rolledDicesList = updatedRolledDicesList,
+                numberOfRolls = currentState.numberOfRolls + 1,
             )
         }
 
         CoroutineScope(Dispatchers.IO).launch {
+            val currentRolledDicesList =
+                _uiStateLiveData.value?.rolledDicesList?.toMutableList().orEmpty().toMutableList()
+            currentRolledDicesList.add(rolledDices)
+            val updatedRolledDicesList = currentRolledDicesList.toList()
+
             _uiStateLiveData.postValue(
                 DiceUiState(
-                    rolledDice1ImgRes = getDiceImageResource(Random.nextInt(from = 1, until = 7)),
-                    rolledDice2ImgRes = getDiceImageResource(Random.nextInt(from = 1, until = 7)),
-                    rolledDice3ImgRes = getDiceImageResource(Random.nextInt(from = 1, until = 7)),
+                    rolledDice1ImgRes = getDiceImageResource(diceValue = dice1Value),
+                    rolledDice2ImgRes = getDiceImageResource(diceValue = dice2Value),
+                    rolledDice3ImgRes = getDiceImageResource(diceValue = dice3Value),
+                    rolledDicesList = updatedRolledDicesList,
                     numberOfRolls = (_uiStateLiveData.value?.numberOfRolls ?: 0) + 1,
                 )
             )
         }
 
 //        _uiStateLiveData.value = DiceUiState(
-//            rolledDice1ImgRes = getDiceImageResource(Random.nextInt(from = 1, until = 7)),
-//            rolledDice2ImgRes = getDiceImageResource(Random.nextInt(from = 1, until = 7)),
-//            rolledDice3ImgRes = getDiceImageResource(Random.nextInt(from = 1, until = 7)),
+//            rolledDice1ImgRes = getDiceImageResource(
+//                diceValue = Random.nextInt(
+//                    from = 1,
+//                    until = 7
+//                )
+//            ),
+//            rolledDice2ImgRes = getDiceImageResource(
+//                diceValue = Random.nextInt(
+//                    from = 1,
+//                    until = 7
+//                )
+//            ),
+//            rolledDice3ImgRes = getDiceImageResource(
+//                diceValue = Random.nextInt(
+//                    from = 1,
+//                    until = 7
+//                )
+//            ),
 //            numberOfRolls = (_uiStateLiveData.value?.numberOfRolls ?: 0) + 1,
 //        )
     }
 
-    private fun getDiceImageResource(diceValue: Int): Int {
-        return when (diceValue) {
-            1 -> R.drawable.ic_dice_one
-            2 -> R.drawable.ic_dice_two
-            3 -> R.drawable.ic_dice_three
-            4 -> R.drawable.ic_dice_four
-            5 -> R.drawable.ic_dice_five
-            6 -> R.drawable.ic_dice_six
-            else -> R.drawable.ic_dice_unknown
-        }
-    }
 }

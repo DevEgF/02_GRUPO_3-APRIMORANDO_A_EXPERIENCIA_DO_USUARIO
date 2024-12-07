@@ -25,10 +25,23 @@
         android:id="@+id/secondFragment"
         android:name="com.dev.bernardoslailati.fundamentosandroidapp.SecondFragment"
         android:label="fragment_second"
-        tools:layout="@layout/fragment_second" />
+        tools:layout="@layout/fragment_second" >
+        <action
+            android:id="@+id/action_secondFragment_to_thirdFragment"
+            app:destination="@id/thirdFragment" />
+    </fragment>
     <argument
         android:name="first_arg"
         app:argType="string[]"
         app:nullable="true"
         android:defaultValue="@null" />
+    <fragment
+        android:id="@+id/thirdFragment"
+        android:name="com.dev.bernardoslailati.fundamentosandroidapp.ThirdFragment"
+        android:label="fragment_third"
+        tools:layout="@layout/fragment_third" >
+        <action
+            android:id="@+id/action_thirdFragment_to_firstFragment"
+            app:destination="@id/firstFragment" />
+    </fragment>
 </navigation>
