@@ -64,23 +64,25 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnRollDice.setOnClickListener {
-            AlertDialog.Builder(this@MainActivity)
-                .setTitle("Rodar os dados")
-                .setMessage("Deseja realmente jogar os dados?")
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton("Sim") { _, _ ->
-                    viewModel.rollDice()
-                }
-                .setPositiveButtonIcon(
-                    AppCompatResources.getDrawable(
-                        this@MainActivity,
-                        R.drawable.ic_dice_unknown
-                    )
-                )
-                .setNegativeButton("Não") { _, _ -> }
-                .setCancelable(false)
-                .create()
-                .show()
+//            AlertDialog.Builder(this@MainActivity)
+//                .setTitle("Rodar os dados")
+//                .setMessage("Deseja realmente jogar os dados?")
+//                .setIcon(android.R.drawable.ic_dialog_alert)
+//                .setPositiveButton("Sim") { _, _ ->
+//                    viewModel.rollDice()
+//                }
+//                .setPositiveButtonIcon(
+//                    AppCompatResources.getDrawable(
+//                        this@MainActivity,
+//                        R.drawable.ic_dice_unknown
+//                    )
+//                )
+//                .setNegativeButton("Não") { _, _ -> }
+//                .setCancelable(false)
+//                .create()
+//                .show()
+
+            ConfirmDialogFragment().show(supportFragmentManager, "confirm_dialog_fragment")
         }
 
         binding.btnNextFragment.setOnClickListener {

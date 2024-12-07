@@ -11,4 +11,7 @@
     <string name="dado_n_1">DADO NØ1</string>
     <string name="dado_n_2">DADO NØ2</string>
     <string name="dado_n_3">DADO NØ3</string>
+    <string name="titulo">Título</string>
+    <string name="mensagem_de_confirmacao">Mensagem de confirmação</string>
+    <string name="confirm">Confirm</string>
 </resources>
