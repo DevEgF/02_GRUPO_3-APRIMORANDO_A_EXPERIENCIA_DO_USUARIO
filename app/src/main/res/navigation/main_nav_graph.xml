@@ -12,12 +12,14 @@
         tools:layout="@layout/fragment_first" >
         <action
             android:id="@+id/action_firstFragment_to_secondFragment"
-            app:destination="@id/secondFragment">
+            app:destination="@id/secondFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out">
             <argument
                 android:name="first_arg"
+                android:defaultValue="@null"
                 app:argType="string[]"
-                app:nullable="true"
-                android:defaultValue="@null" />
+                app:nullable="true" />
         </action>
     </fragment>
 
@@ -26,15 +28,17 @@
         android:name="com.dev.bernardoslailati.fundamentosandroidapp.SecondFragment"
         android:label="fragment_second"
         tools:layout="@layout/fragment_second" >
+        <argument
+            android:name="first_arg"
+            app:argType="string[]"
+            app:nullable="true"
+            android:defaultValue="@null" />
         <action
             android:id="@+id/action_secondFragment_to_thirdFragment"
-            app:destination="@id/thirdFragment" />
+            app:destination="@id/thirdFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
     </fragment>
-    <argument
-        android:name="first_arg"
-        app:argType="string[]"
-        app:nullable="true"
-        android:defaultValue="@null" />
     <fragment
         android:id="@+id/thirdFragment"
         android:name="com.dev.bernardoslailati.fundamentosandroidapp.ThirdFragment"
@@ -44,4 +48,5 @@
             android:id="@+id/action_thirdFragment_to_firstFragment"
             app:destination="@id/firstFragment" />
     </fragment>
+
 </navigation>

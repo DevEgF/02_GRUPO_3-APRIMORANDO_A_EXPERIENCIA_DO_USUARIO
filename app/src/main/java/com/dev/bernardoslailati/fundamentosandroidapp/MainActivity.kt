@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -13,12 +15,8 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
 import com.dev.bernardoslailati.fundamentosandroidapp.databinding.ActivityMainBinding
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,16 +32,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
         viewModel.uiStateLiveData.observe(this@MainActivity) { uiState ->
             // Update UI elements
             // id do drawable de dado
-            uiState.rolledDice1ImgRes?.let { imgRes ->
-                binding.ivRolledDice1.setImageResource(imgRes)
-            }
+            uiState.rolledDice1ImgRes?.let { imgRes -> binding.ivRolledDice1.setImageResource(imgRes) }
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.settings_menu, menu)
         return true
@@ -72,9 +69,7 @@ class MainActivity : AppCompatActivity() {
 //                viewModel.uiState.collect { uiState ->
 //                    // Update UI elements
 //                    // id do drawable de dado
-//                    uiState.rolledDice1ImgRes?.let { imgRes ->
-//                        binding.ivRolledDice1.setImageResource(imgRes)
-//                    }
+//                    uiState.rolledDice1ImgRes?.let { imgRes -> binding.ivRolledDice1.setImageResource(imgRes) }
 //                }
 //            }
 //        }
@@ -89,7 +84,6 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         binding.btnRollDice.setOnClickListener {
             AlertDialog.Builder(this@MainActivity)
                 .setTitle("Rodar os dados")
@@ -115,15 +109,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnNextFragment.setOnClickListener {
+            val customAnim = AnimationUtils.loadAnimation(this@MainActivity, R.anim.custom_anim)
+            binding.btnNextFragment.startAnimation(customAnim)
+
             navController?.currentDestination?.id.let {
                 when (it) {
                     R.id.firstFragment -> {
                         navController?.navigate(
                             R.id.action_firstFragment_to_secondFragment,
-                            bundleOf("firstArg" to arrayOf("1", "2", "3"))
+                            bundleOf("first_arg" to arrayOf("1", "2", "3"))
                         )
                         binding.btnNextFragment.text =
-                            getString(R.string.voltar_para_o_primeiro_fragment)
+                            getString(R.string.ver_lista_de_jogadas)
                     }
 
                     R.id.secondFragment -> {
