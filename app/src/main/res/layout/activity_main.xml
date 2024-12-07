@@ -6,19 +6,35 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".MainActivity">
 
+
     <TextView
-        android:id="@+id/tvRolledDice"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvDiceName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="---"
+        android:text="@string/dado_n_1"
         android:textAlignment="center"
+        android:layout_marginTop="16dp"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@id/fcvMainContainer"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivRolledDice1"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/icone_de_um_dado"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDiceName"
+        android:src="@drawable/ic_dice_unknown"
+        tools:src="@drawable/ic_dice_one" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fcvMainContainer"
@@ -30,24 +46,24 @@
         app:layout_constraintBottom_toTopOf="@id/btnRollDice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvRolledDice"/>
+        app:layout_constraintTop_toBottomOf="@id/ivRolledDice1"/>
 
     <Button
         android:id="@+id/btnRollDice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
         android:text="@string/jogar_dado"
-        android:layout_margin="24dp"
+        android:layout_margin="48dp"
         app:layout_constraintBottom_toTopOf="@id/btnNextFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:id="@+id/btnNextFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
         android:text="@string/ir_para_proxima_tela"
-        android:layout_margin="24dp"
+        android:layout_margin="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>

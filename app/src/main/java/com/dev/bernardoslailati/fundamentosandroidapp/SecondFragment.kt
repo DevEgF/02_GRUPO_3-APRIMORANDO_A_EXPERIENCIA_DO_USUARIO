@@ -21,6 +21,11 @@ class SecondFragment : Fragment() {
     private var _binding: FragmentSecondBinding? = null
     private val binding get() = _binding!!
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,7 +41,11 @@ class SecondFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.uiState.collect {
-                binding.tvSecondFragment.text = it.rolledDiceValue.toString()
+                viewModel.uiState.collect { uiState ->
+                    uiState.rolledDice3ImgRes?.let { imgRes ->
+                        binding.ivRolledDice3.setImageResource(imgRes)
+                    }
+                }
             }
         }
 

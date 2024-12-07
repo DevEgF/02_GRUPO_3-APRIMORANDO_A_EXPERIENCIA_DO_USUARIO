@@ -1,10 +1,14 @@
 <resources>
     <string name="app_name">FundamentosAndroidApp</string>
-    <string name="ir_para_proxima_tela">Ir para próxima tela</string>
+    <string name="ir_para_proxima_tela">Ver próximo dado</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fragment_1">Fragment_1</string>
     <string name="fragment_2">Fragment_2</string>
-    <string name="voltar_para_o_primeiro_fragment">Voltar para o primeiro fragment</string>
-    <string name="jogar_dado">Jogar dado</string>
+    <string name="voltar_para_o_primeiro_fragment">Voltar para o primeiro dado</string>
+    <string name="jogar_dado">Jogar dados</string>
+    <string name="icone_de_um_dado">Ícone de um dado</string>
+    <string name="dado_n_1">DADO NØ1</string>
+    <string name="dado_n_2">DADO NØ2</string>
+    <string name="dado_n_3">DADO NØ3</string>
 </resources>
