@@ -3,7 +3,9 @@ package com.dev.bernardoslailati.fundamentosandroidapp
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -62,23 +64,43 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnRollDice.setOnClickListener {
-            viewModel.rollDice()
+            AlertDialog.Builder(this@MainActivity)
+                .setTitle("Rodar os dados")
+                .setMessage("Deseja realmente jogar os dados?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Sim") { _, _ ->
+                    viewModel.rollDice()
+                }
+                .setPositiveButtonIcon(
+                    AppCompatResources.getDrawable(
+                        this@MainActivity,
+                        R.drawable.ic_dice_unknown
+                    )
+                )
+                .setNegativeButton("Não") { _, _ -> }
+                .setCancelable(false)
+                .create()
+                .show()
         }
 
         binding.btnNextFragment.setOnClickListener {
             navController?.currentDestination?.id.let {
-                when(it) {
+                when (it) {
                     R.id.firstFragment -> {
-                        navController?.navigate(R.id.action_firstFragment_to_secondFragment,
+                        navController?.navigate(
+                            R.id.action_firstFragment_to_secondFragment,
                             bundleOf("firstArg" to arrayOf("1", "2", "3"))
                         )
                         binding.btnNextFragment.text =
                             getString(R.string.voltar_para_o_primeiro_fragment)
                     }
+
                     R.id.secondFragment -> {
                         navController?.navigate(R.id.action_secondFragment_to_thirdFragment)
-                        binding.btnNextFragment.text = getString(R.string.voltar_para_o_primeiro_fragment)
+                        binding.btnNextFragment.text =
+                            getString(R.string.voltar_para_o_primeiro_fragment)
                     }
+
                     R.id.thirdFragment -> {
                         navController?.navigate(R.id.action_thirdFragment_to_firstFragment)
                         binding.btnNextFragment.text = getString(R.string.ir_para_proxima_tela)
