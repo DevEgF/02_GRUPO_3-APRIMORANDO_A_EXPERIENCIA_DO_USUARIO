@@ -82,7 +82,9 @@ class MainActivity : AppCompatActivity() {
 //                .create()
 //                .show()
 
-            ConfirmDialogFragment().show(supportFragmentManager, "confirm_dialog_fragment")
+//            ConfirmDialogFragment().show(supportFragmentManager, "confirm_dialog_fragment")
+
+            ConfirmBottomSheetDialogFragment().show(supportFragmentManager, "confirm_dialog_fragment")
         }
 
         binding.btnNextFragment.setOnClickListener {
